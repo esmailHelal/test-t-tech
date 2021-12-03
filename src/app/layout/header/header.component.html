@@ -1,0 +1,113 @@
+<div class="topHeader" [ngClass]="{ nosidebar: apiservices.show }">
+  <div class="topHeader_firstpart">
+    <div class="topHeader_firstpart_icon">
+      <i class="fas fa-bars" (click)="click()"></i>
+
+      <!--  <img src="assets/001-menu.svg" class="img-fluid" /> -->
+    </div>
+    <!-- <div class="topHeader_firstpart_text">Home</div>
+    <div class="topHeader_firstpart_text">Contact</div> -->
+  </div>
+  <div class="topHeader_secondpart">
+   <!--  <div class="topHeader_secondpart_nav-link">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="topHeader_secondpart_nav-link">
+      <i class="far fa-comments"></i>
+      <span class="badge bg-danger navbar-badge">3</span>
+    </div>
+    <div class="topHeader_secondpart_nav-link">
+      <i class="far fa-bell"></i>
+      <span class="badge bg-warning navbar-badge">3</span>
+    </div>
+    <div class="topHeader_secondpart_nav-link">
+      <i class="fas fa-expand-arrows-alt"></i>
+    </div>
+    <div class="topHeader_secondpart_nav-link">
+      <i class="fas fa-th-large"></i>
+    </div> -->
+
+    <div class="topHeader_secondpart_nav-link" (click)="signOut()">
+      Logout
+    </div>
+   
+  </div>
+</div>
+<div class="sidebar shadow" [ngClass]="{ nosidebar: apiservices.show }">
+  <div class="sidebar_brand-link">
+    <img
+      src="assets/AdminLTELogo.png"
+      alt="AdminLTE Logo"
+      class="sidebar_brand-link_brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
+    <span class="sidebar_brand-link_brand-text font-weight-light"
+      >test</span
+    >
+  </div>
+
+  <div class="sidebar_secondPart">
+    <div class="sidebar_secondPart_user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="sidebar_secondPart_user-panel_image">
+        <img
+          src="assets/user2-160x160.jpg"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+      </div>
+      <div class="sidebar_secondPart_user-panel_info">
+        <div a class="d-block">{{nameRole}}</div>
+      </div>
+    </div>
+
+   <!--  <div class="form-inline">
+      <div class="input-group">
+        <input
+          class="form-control form-control-sidebar"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-fw fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+    <ul class="nav nav-pills sidebar_secondPart_nav-sidebar flex-column">
+      <ng-container *ngFor="let item of arr; let i = index">
+        <li class="nav-item" [ngClass]="{ active: item.active }">
+          <div
+            class="nav-link"
+            [ngClass]="{ activedesign: item.actveClass }"
+            (click)="toglecollapse(i, item)"
+          >
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              {{ item.title }}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </div>
+          <ul
+            class="nav nav-treeview mt-2"
+            [ngClass]="{ 'nav-treeview--hide': item.active == false }"
+          >
+            <ng-container *ngFor="let item1 of item.children; let i1 = index">
+              <li
+                class="nav-item"
+                (click)="toglecollapseChildren(i1, item, item1)"
+              >
+                <div class="nav-link" [ngClass]="{ active: item1.active ,disabled:item1.disable}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ item1.title }}</p>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>
